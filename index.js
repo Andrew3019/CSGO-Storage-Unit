@@ -21,8 +21,6 @@ const logInOptions = {
 	twoFactorCode: SteamTotp.generateAuthCode(config.sharedSecret)
 };
 
-const mode = process.argv[2];
-
 user.logOn(logInOptions);
 
 user.on('loggedOn', () => {
@@ -51,7 +49,7 @@ function add_to_casket() {
 
 
   const regex = /(?<=\), )0\.\d+(?=,)/g;
-  const purchase_data = FileSystem.readFileSync(config.file_path, 'utf8').trim().split('\n').splice(-250);
+  const purchase_data = FileSystem.readFileSync(config.file_path, 'utf8').trim().split('\n').splice(-500);
   for (var i=0; i<purchase_data.length; i++) purchase_data[i] = parseFloat(purchase_data[i].match(regex)[0]);
 
   for (const item of inventory)
@@ -118,6 +116,6 @@ csgo.on('connectedToGC', () => {
       if (cnt == 0) {
           quit();
       }
-    }, 1000);
+    }, 3000);
   };
 });
